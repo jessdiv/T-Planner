@@ -1,7 +1,12 @@
+body {
+  background-color: royalblue;
+  color: white;
+}
+
 .App {
   text-align: center;
   font-family: monospace;
-  font-weight: lighter;
+  font-weight: 50;
   font-size: 25px;
 }
 
