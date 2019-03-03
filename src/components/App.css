@@ -1,13 +1,19 @@
 body {
-  background-color: royalblue;
-  color: white;
-}
-
-.App {
-  text-align: center;
-  font-family: monospace;
+  background-color: cornflowerblue;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 50;
   font-size: 25px;
+}
+
+.navlinks a {
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+}
+
+.navlinks a:hover {
+  background-color: white;
 }
 
 .App-header {

@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './components/App';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
 import * as serviceWorker from './serviceWorker';
 
 const Routes = (
   <Router>
     <div>
       <Route exact path='/' component={ App }/>
+      <Route exact path='/Signup' component={ SignUp }/>
+      <Route exact path='/Signin' component={ SignIn }/>
     </div>
   </Router>
 )
