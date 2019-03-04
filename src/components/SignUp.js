@@ -3,6 +3,10 @@ import Header from './Header';
 import Footer from './Footer';
 import './App.css';
 
+// bootstrap elements
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 class SignUp extends Component {
   constructor() {
     super();
@@ -58,27 +62,37 @@ class SignUp extends Component {
 
   render(){
     return(
-      <div className="signup">
+      <div className="signup App">
         <Header/>
         <h3> Sign up </h3>
-        <form onSubmit={ this._handleSubmit }>
-          <label htmlFor='firstName'> First Name: </label>
-          <input type='text' name='firstName' id='firstName' onChange={ this._firstNameChange }/>
+        <Form onSubmit={ this._handleSubmit }>
+          <Form.Group>
+            <Form.Label htmlFor='firstName'> First Name: </Form.Label>
+            <Form.Control type='text' name='firstName' id='firstName' onChange={ this._firstNameChange }/>
+          </Form.Group>
 
-          <label htmlFor='lastName'> Last Name: </label>
-          <input type='text' name='lastName' id='lastName' onChange={ this._lastNameChange }/>
+          <Form.Group>
+            <Form.Label htmlFor='lastName'> Last Name: </Form.Label>
+            <Form.Control type='text' name='lastName' id='lastName' onChange={ this._lastNameChange }/>
+          </Form.Group>
 
-          <label htmlFor='userame'> Pick a username: </label>
-          <input type='text' name='username' id='username' onChange={ this._usernameChange }/>
+          <Form.Group>
+            <Form.Label htmlFor='userame'> Pick a username: </Form.Label>
+            <Form.Control type='text' name='username' id='username' onChange={ this._usernameChange }/>
+          </Form.Group>
 
-          <label htmlFor='email'> Email: </label>
-          <input type='text' name='email' id='email' onChange={ this._emailChange }/>
+          <Form.Group>
+            <Form.Label htmlFor='email'> Email: </Form.Label>
+            <Form.Control type='text' name='email' id='email' onChange={ this._emailChange }/>
+          </Form.Group>
 
-          <label htmlFor='password'> Password: </label>
-          <input type='text' name='password' id='password' onChange={ this._passwordChange }/>
+          <Form.Group>
+            <Form.Label htmlFor='password'> Password: </Form.Label>
+            <Form.Control type='text' name='password' id='password' onChange={ this._passwordChange }/>
+          </Form.Group>
 
-          <button> Sign in </button>
-        </form>
+          <Button type='submit' htmlFor='submit' variant='danger'> Sign in </Button>
+        </Form>
         <Footer />
       </div>
     );

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import SearchResults from './SearchResults';
 
 // bootstrap components
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 // date/time pickers
 // import TimePicker from 'basic-react-timepicker';
@@ -13,9 +15,10 @@ class Search extends Component {
     this.state = {
       origin: null,
       destination: null,
-      wheelchairAccessOnly: false,
+      wheelchairAccess: false,
       time: null,
       date: null,
+      submitted: false,
     }
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleOriginChange = this._handleOriginChange.bind(this);
@@ -27,18 +30,21 @@ class Search extends Component {
     this.setState({
       origin: e.target.value,
     });
+    console.log(this.state.origin);
   }
 
   _handleDestinationChange(e) {
     this.setState({
       destination: e.target.value,
     });
+    console.log(this.state.destination);
   }
 
   _handleWheelchairInput(e) {
     this.setState({
-      wheelchairAccessOnly: true,
+      wheelchairAccess: !this.state.wheelchairAccess,
     })
+    console.log(this.state.wheelchairAccess);
   }
 
   _handleTime(time) {
@@ -47,29 +53,37 @@ class Search extends Component {
 
   _handleSubmit(e){
     e.preventDefault();
+    console.log('hello');
+    this.setState({
+      submitted: true,
+    })
+  }
 
+  resultSubmitted() {
+    this.setState({
+      submitted: false,
+    })
   }
 
   render() {
     return(
       <div className='form'>
         <h3> Trip Planner </h3>
-        <form onSubmit={ this._handleSubmit }>
+        <Form onSubmit={ this._handleSubmit }>
 
-          <label htmlFor='origin'> From: </label>
-          <input type='text' name='origin'  id='origin' onChange={ this._handleOriginChange }/>
+          <Form.Label htmlFor='origin'> From: </Form.Label>
+          <Form.Control type='text' name='origin'  id='origin' onChange={ this._handleOriginChange } required autoFocus/>
 
-          <label htmlFor='destination'> To: </label>
-          <input type='text' name='destination' onChange={ this._handleDestinationChange }/>
+          <Form.Label htmlFor='destination'> To: </Form.Label>
+          <Form.Control type='text' name='destination' id="destination" onChange={ this._handleDestinationChange } required/>
 
-          <label htmlFor='wheelchairAccess'> Return Wheelchair accessible routes only </label>
-          <input type='checkbox' name='wheelchairAccess' id='wheelchairAccess' onChange={ this._handleWheelchairInput }/>
+          <Form.Label htmlFor='wheelchairAccess'> Return Wheelchair accessible routes only </Form.Label>
+          <Form.Control type='checkbox' name='wheelchairAccess' id='wheelchairAccess' onChange={ this._handleWheelchairInput }/>
 
-          <label htmlFor='time'> Time: </label>
+          <Button type='submit' htmlFor='submit' variant='danger'> Plan Trip </Button>
+        </Form>
 
-
-          <Button variant="primary"> Plan Trip </Button>
-        </form>
+        <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted.bind(this)} />
       </div>
     );
   }
