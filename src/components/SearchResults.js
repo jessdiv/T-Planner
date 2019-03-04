@@ -14,13 +14,10 @@ class SearchResults extends Component {
   componentDidUpdate() {
     if (this.props.submitted === true) {
       this.props.resultSubmitted();
-      axios.get(`http://localhost:4000/searchresults?origin=${this.props.origin}&destination=${this.props.destination}`)
+      axios.get(`https://trip-planner-server.herokuapp.com/searchresults?origin=${this.props.origin}&destination=${this.props.destination}`)
       .then(res => {
         const trips = res.data;
-        console.log(res.data["version"]);
         this.setState({ trips })
-        console.log(this.state.trips)
-
       })
     }
   }
@@ -30,7 +27,7 @@ class SearchResults extends Component {
       this.state.trips === null ? <div></div> :
       <div>
         <h2> {this.props.origin} to {this.props.destination}</h2>
-        <DisplayTrip trip={ this.state.trips }/>
+        <DisplayTrip trips={ this.state.trips }/>
       </div>
     );
   }

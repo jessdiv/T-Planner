@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+// import Nav from 'react-bootstrap/Nav';
 
 class Header extends Component {
   render () {
@@ -12,12 +13,12 @@ class Header extends Component {
 
         <Navbar bg="light" variant='light' fixed="top" className='navlinks'>
           <Navbar.Brand href="/">AxSyd</Navbar.Brand>
-            <Nav.Link href='/'> Home </Nav.Link>
-            <Nav.Link href='/SignIn'> Sign in </Nav.Link>
-            <Nav.Link href='/SignUp'> Sign up </Nav.Link>
+            <Link to='/'> Home </Link>
+            <Link to='/Signin'> Sign in </Link>
+            <Link to='/Signup'> Sign up </Link>
         </Navbar>
 
-        <h2 className="heading"> AxSyd </h2>
+        <h1 className="heading"> AxSyd </h1>
       </div>
     );
   }

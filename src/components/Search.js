@@ -16,8 +16,8 @@ class Search extends Component {
       origin: null,
       destination: null,
       wheelchairAccess: false,
-      time: null,
-      date: null,
+      time: "",
+      date: "",
       submitted: false,
     }
     this._handleSubmit = this._handleSubmit.bind(this);
@@ -47,9 +47,20 @@ class Search extends Component {
     console.log(this.state.wheelchairAccess);
   }
 
-  _handleTime(time) {
-    this.setState({ time })
-  }
+  // _handleDate(e) {
+  //   this.setState({
+  //     date: e.target.value,
+  //   })
+  //   console.log(e.target.value);
+  // }
+  //
+  // _handleTime(e) {
+  //   this.setState({
+  //     time: e.target.value,
+  //   })
+  //   console.log(e.target.value);
+  // }
+
 
   _handleSubmit(e){
     e.preventDefault();
@@ -68,17 +79,23 @@ class Search extends Component {
   render() {
     return(
       <div className='searchBar'>
-        <h3 className='searchHeading'> Trip Planner </h3>
+        <h3 className='searchHeading'> A Trip Planner for train travel </h3>
         <Form onSubmit={ this._handleSubmit }>
 
           <Form.Label htmlFor='origin'> From: </Form.Label>
-          <Form.Control type='text' name='origin'  id='origin' onChange={ this._handleOriginChange } required autoFocus/>
+          <Form.Control type='text' name='origin'  id='origin' onChange={ this._handleOriginChange } className='searchInput' required autoFocus/>
 
           <Form.Label htmlFor='destination'> To: </Form.Label>
-          <Form.Control type='text' name='destination' id="destination" onChange={ this._handleDestinationChange } required/>
+          <Form.Control type='text' name='destination' id="destination" onChange={ this._handleDestinationChange } className='searchInput' required/>
 
-          <Form.Label htmlFor='wheelchairAccess'class='accessToggle'> Return Wheelchair accessible routes only </Form.Label>
-          <Form.Control type='checkbox' name='wheelchairAccess' class='accessToggle' onChange={ this._handleWheelchairInput }/>
+          <Form.Label htmlFor='date'> Select a date: </Form.Label>
+          <Form.Control type='date' name='date' id="date" onChange={ this._handleDate } className='searchInput' required/>
+
+          <Form.Label htmlFor='time'> Pick a time: </Form.Label>
+          <Form.Control type='time' name='time' id="time" onChange={ this._handleTime } className='searchInput' required/>
+
+          <Form.Label htmlFor='wheelchairAccess'className='accessToggle'> Return Wheelchair accessible routes only </Form.Label>
+          <Form.Control type='checkbox' name='wheelchairAccess' className='accessToggle' id='wheelchairAccess' onChange={ this._handleWheelchairInput }/>
 
           <Button type='submit' htmlFor='submit' variant='danger'> Plan Trip </Button>
         </Form>
