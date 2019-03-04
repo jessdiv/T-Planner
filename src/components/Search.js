@@ -67,8 +67,8 @@ class Search extends Component {
 
   render() {
     return(
-      <div className='form'>
-        <h3> Trip Planner </h3>
+      <div className='searchBar'>
+        <h3 className='searchHeading'> Trip Planner </h3>
         <Form onSubmit={ this._handleSubmit }>
 
           <Form.Label htmlFor='origin'> From: </Form.Label>
@@ -77,8 +77,8 @@ class Search extends Component {
           <Form.Label htmlFor='destination'> To: </Form.Label>
           <Form.Control type='text' name='destination' id="destination" onChange={ this._handleDestinationChange } required/>
 
-          <Form.Label htmlFor='wheelchairAccess'> Return Wheelchair accessible routes only </Form.Label>
-          <Form.Control type='checkbox' name='wheelchairAccess' id='wheelchairAccess' onChange={ this._handleWheelchairInput }/>
+          <Form.Label htmlFor='wheelchairAccess'class='accessToggle'> Return Wheelchair accessible routes only </Form.Label>
+          <Form.Control type='checkbox' name='wheelchairAccess' class='accessToggle' onChange={ this._handleWheelchairInput }/>
 
           <Button type='submit' htmlFor='submit' variant='danger'> Plan Trip </Button>
         </Form>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import DisplayTrip from './DisplayTrip';
 
 class SearchResults extends Component {
   constructor() {
     super();
     this.state ={
-      trip: null,
+      trips: null,
     }
   }
 
@@ -15,23 +16,21 @@ class SearchResults extends Component {
       this.props.resultSubmitted();
       axios.get(`http://localhost:4000/searchresults?origin=${this.props.origin}&destination=${this.props.destination}`)
       .then(res => {
-        const trip = res.data;
+        const trips = res.data;
         console.log(res.data["version"]);
-        this.setState({ trip })
-        console.log(this.state.trip)
+        this.setState({ trips })
+        console.log(this.state.trips)
 
       })
     }
   }
 
   render() {
-
     return(
-      this.state.trip === null ? <div>empty div</div> :
+      this.state.trips === null ? <div></div> :
       <div>
-        <p> From: {this.props.origin }</p>
-        <p> To: {this.props.destination }</p>
-        <p> Time:{this.state.trip["journeys"][0]["legs"][0]["origin"]["departureTimePlanned"]} </p>
+        <h2> {this.props.origin} to {this.props.destination}</h2>
+        <DisplayTrip trip={ this.state.trips }/>
       </div>
     );
   }
