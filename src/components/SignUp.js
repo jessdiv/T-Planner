@@ -62,33 +62,33 @@ class SignUp extends Component {
 
   render(){
     return(
-      <div className="signup App">
+      <div className="signup App container">
         <Header/>
         <h3> Sign up </h3>
         <Form onSubmit={ this._handleSubmit }>
           <Form.Group>
             <Form.Label htmlFor='firstName'> First Name: </Form.Label>
-            <Form.Control type='text' name='firstName' id='firstName' onChange={ this._firstNameChange }/>
+            <Form.Control type='text' name='firstName' id='firstName' onChange={ this._firstNameChange } className="searchInput"/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label htmlFor='lastName'> Last Name: </Form.Label>
-            <Form.Control type='text' name='lastName' id='lastName' onChange={ this._lastNameChange }/>
+            <Form.Control type='text' name='lastName' id='lastName' onChange={ this._lastNameChange } className="searchInput"/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label htmlFor='userame'> Pick a username: </Form.Label>
-            <Form.Control type='text' name='username' id='username' onChange={ this._usernameChange }/>
+            <Form.Control type='text' name='username' id='username' onChange={ this._usernameChange } className="searchInput"/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label htmlFor='email'> Email: </Form.Label>
-            <Form.Control type='text' name='email' id='email' onChange={ this._emailChange }/>
+            <Form.Control type='text' name='email' id='email' onChange={ this._emailChange } className="searchInput"/>
           </Form.Group>
 
           <Form.Group>
             <Form.Label htmlFor='password'> Password: </Form.Label>
-            <Form.Control type='text' name='password' id='password' onChange={ this._passwordChange }/>
+            <Form.Control type='text' name='password' id='password' onChange={ this._passwordChange } className="searchInput"/>
           </Form.Group>
 
           <Button type='submit' htmlFor='submit' variant='danger'> Sign in </Button>

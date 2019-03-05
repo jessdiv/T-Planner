@@ -12,7 +12,7 @@ class Header extends Component {
       <div className="header">
 
         <Navbar bg="light" variant='light' fixed="top" className='navlinks'>
-          <Navbar.Brand href="/">AxSyd</Navbar.Brand>
+          <Navbar.Brand href="/">AXSYD</Navbar.Brand>
             <Link to='/'> Home </Link>
             <Link to='/Signin'> Sign in </Link>
             <Link to='/Signup'> Sign up </Link>

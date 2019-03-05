@@ -2,7 +2,6 @@
   "name": "trip-planner",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jessdiv.github.io/Trip-Planner/",
   "dependencies": {
     "basic-react-timepicker": "^1.0.0",
     "bootstrap": "^4.3.1",
@@ -21,9 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3000/#/",
   "eslintConfig": {

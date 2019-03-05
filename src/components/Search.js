@@ -16,61 +16,51 @@ class Search extends Component {
       origin: null,
       destination: null,
       wheelchairAccess: false,
-      time: "",
-      date: "",
+      time: null,
+      date: null,
       submitted: false,
     }
-    this._handleSubmit = this._handleSubmit.bind(this);
-    this._handleOriginChange = this._handleOriginChange.bind(this);
-    this._handleDestinationChange = this._handleDestinationChange.bind(this);
-    this._handleWheelchairInput = this._handleWheelchairInput.bind(this);
   }
 
-  _handleOriginChange(e) {
+  _handleOriginChange = (e) => {
     this.setState({
       origin: e.target.value,
     });
-    console.log(this.state.origin);
   }
 
-  _handleDestinationChange(e) {
+  _handleDestinationChange = (e) => {
     this.setState({
       destination: e.target.value,
     });
-    console.log(this.state.destination);
   }
 
-  _handleWheelchairInput(e) {
+  _handleWheelchairInput = (e) => {
     this.setState({
       wheelchairAccess: !this.state.wheelchairAccess,
     })
-    console.log(this.state.wheelchairAccess);
   }
 
-  // _handleDate(e) {
-  //   this.setState({
-  //     date: e.target.value,
-  //   })
-  //   console.log(e.target.value);
-  // }
-  //
-  // _handleTime(e) {
-  //   this.setState({
-  //     time: e.target.value,
-  //   })
-  //   console.log(e.target.value);
-  // }
+  _handleDate = (e) => {
+    this.setState({
+      date: e.target.value,
+    })
+  }
+
+  _handleTime = (e) => {
+    this.setState({
+      time: e.target.value,
+    })
+  }
 
 
-  _handleSubmit(e){
+  _handleSubmit = (e) => {
     e.preventDefault();
-    console.log('hello');
     this.setState({
       submitted: true,
     })
   }
 
-  resultSubmitted() {
+  resultSubmitted = () => {
     this.setState({
       submitted: false,
     })
@@ -78,7 +68,7 @@ class Search extends Component {
 
   render() {
     return(
-      <div className='searchBar'>
+      <div className='searchBar container'>
         <h3 className='searchHeading'> A Trip Planner for train travel </h3>
         <Form onSubmit={ this._handleSubmit }>
 
@@ -94,13 +84,13 @@ class Search extends Component {
           <Form.Label htmlFor='time'> Pick a time: </Form.Label>
           <Form.Control type='time' name='time' id="time" onChange={ this._handleTime } className='searchInput' required/>
 
-          <Form.Label htmlFor='wheelchairAccess'className='accessToggle'> Return Wheelchair accessible routes only </Form.Label>
+          <Form.Label htmlFor='wheelchairAccess' className='accessToggle'> Return Wheelchair accessible routes only </Form.Label>
           <Form.Control type='checkbox' name='wheelchairAccess' className='accessToggle' id='wheelchairAccess' onChange={ this._handleWheelchairInput }/>
 
           <Button type='submit' htmlFor='submit' variant='danger'> Plan Trip </Button>
         </Form>
 
-        <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted.bind(this)} />
+        <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted} time={this.state.time} date={this.state.date}/>
       </div>
     );
   }

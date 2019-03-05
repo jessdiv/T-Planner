@@ -14,7 +14,7 @@ class SearchResults extends Component {
   componentDidUpdate() {
     if (this.props.submitted === true) {
       this.props.resultSubmitted();
-      axios.get(`https://trip-planner-server.herokuapp.com/searchresults?origin=${this.props.origin}&destination=${this.props.destination}`)
+      axios.get(`https://trip-planner-server.herokuapp.com/searchresults?origin=${this.props.origin}&destination=${this.props.destination}&time=${this.props.time}`)
       .then(res => {
         const trips = res.data;
         this.setState({ trips })
@@ -25,8 +25,9 @@ class SearchResults extends Component {
   render() {
     return(
       this.state.trips === null ? <div></div> :
-      <div>
-        <h2> {this.props.origin} to {this.props.destination}</h2>
+      <div className='tripHeading'>
+        <h2 className='route'> {this.props.origin} to {this.props.destination}</h2>
+        <p className='routeTime'> Leaving after: {this.props.time }, {this.props.date }</p>
         <DisplayTrip trips={ this.state.trips }/>
       </div>
     );
