@@ -14,7 +14,7 @@ class SearchResults extends Component {
   componentDidUpdate() {
     if (this.props.submitted === true) {
       this.props.resultSubmitted();
-      axios.get(`https://trip-planner-server.herokuapp.com/searchresults?origin=${this.props.origin}&destination=${this.props.destination}&time=${this.props.time}`)
+      axios.get(`http://localhost:4000/searchresults?origin=${this.props.origin}&destination=${this.props.destination}&time=${this.props.time}`)
       .then(res => {
         const trips = res.data;
         this.setState({ trips })

@@ -6,13 +6,21 @@ class DisplayTrip extends Component {
     super();
     this.state = {
       tripInfo: null,
+      displayStops: false,
     }
   }
 
-  render(){
-    const trips = this.props.trips["journeys"];
+  handleClick = () => {
+    console.log('------ clickity click');
 
-    const getTime = function(timestamp) {
+    this.setState({
+      displayStops: !this.state.displayStops,
+
+    })
+    console.log('displayStops:' + this.state.displayStops);
+  }
+
+  getTime = (timestamp) => {
       const time = new Date(timestamp)
       let hour = time.getUTCHours();
       let minutes = time.getUTCMinutes();
@@ -23,7 +31,7 @@ class DisplayTrip extends Component {
       if (hour < 10 ){
         hour = ('0' + hour);
         console.log('hour:' + hour);
-        return hour;
+        return (hour);
       }
 
       if (minutes < 10) {
@@ -35,20 +43,25 @@ class DisplayTrip extends Component {
       return hour + ':' + minutes;
     }
 
+  render(){
+    let trips = this.props.trips["journeys"];
+    console.log(trips[0]);
+
+    // console.log('----- this: ', this.getTime)
+
     return(
       <div className='allTrips container'>
         <ul className='tripList'>
-          {trips.map(function(name, index) {
+          {trips.map((name, index) => {
             return <div className='trip'>
             <li key={ index} className='tripList'>
               <p>
-               {(getTime(name["legs"][0]["origin"]["departureTimePlanned"]))}</p>
+               {this.getTime(name["legs"][0]["origin"]["departureTimePlanned"])}</p>
               <p>{name["legs"][0]["transportation"]["number"]} </p>
 
+              <button className='moreInfo' onClick={this.handleClick}> Click for train info </button>
 
-              <button className='moreInfo'> Click for train info </button>
-            
-              <DisplayTripInfo />
+              { this.state.displayStops && <DisplayTripInfo thisTrip={trips[index]}/>}
 
             </li>
             </div>;

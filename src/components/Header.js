@@ -14,8 +14,8 @@ class Header extends Component {
         <Navbar bg="light" variant='light' fixed="top" className='navlinks'>
           <Navbar.Brand href="/">AXSYD</Navbar.Brand>
             <Link to='/'> Home </Link>
-            <Link to='/Signin'> Sign in </Link>
-            <Link to='/Signup'> Sign up </Link>
+            <Link to='/signin'> Sign in </Link>
+            <Link to='/signup'> Sign up </Link>
         </Navbar>
 
         <h1 className="heading"> AxSyd </h1>

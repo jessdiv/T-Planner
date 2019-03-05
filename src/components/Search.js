@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import SearchResults from './SearchResults';
+import axios from 'axios';
 
 // bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -19,6 +20,8 @@ class Search extends Component {
       time: null,
       date: null,
       submitted: false,
+      originStopId: null,
+      destinationStopId: null,
     }
   }
 
@@ -52,12 +55,32 @@ class Search extends Component {
     })
   }
 
-
-  _handleSubmit = (e) => {
+  _handleSubmit = (e, origin=this.state.origin, destination=this.state.destination) => {
     e.preventDefault();
+
+    // axios.get(`http://localhost:4000/find_stop?stop=${this.state.origin}`)
+    // .then((response) => {
+    // let originStopId;
+    //
+    //   // console.log(response["request"]['response']);
+    //   // console.log(`RESPONSE HERE: `, response["request"]['response']["itdRequest"]["itdStopFinderRequest"]["itdOdv"]["itdOdvPlace"]["itdOdvName"]["odvNameElem"]['id']);
+    //
+    //   this.setState({ originStopId })
+    //
+    //   axios.get(`http://localhost:4000/find_stop?stop=${this.state.destination}`)
+    //   .then((response) => {
+    //   let destinationStopId;
+    //
+    //   this.setState({ destinationStopId })
+    //
+    // });
+
     this.setState({
       submitted: true,
     })
+
+
+
   }
 
   resultSubmitted = () => {
@@ -79,15 +102,15 @@ class Search extends Component {
           <Form.Control type='text' name='destination' id="destination" onChange={ this._handleDestinationChange } className='searchInput' required/>
 
           <Form.Label htmlFor='date'> Select a date: </Form.Label>
-          <Form.Control type='date' name='date' id="date" onChange={ this._handleDate } className='searchInput' required/>
+          <Form.Control type='date' name='date' id="date" onChange={ this._handleDate } className='searchInput'/>
 
           <Form.Label htmlFor='time'> Pick a time: </Form.Label>
-          <Form.Control type='time' name='time' id="time" onChange={ this._handleTime } className='searchInput' required/>
+          <Form.Control type='time' name='time' id="time" onChange={ this._handleTime } className='searchInput'/>
 
           <Form.Label htmlFor='wheelchairAccess' className='accessToggle'> Return Wheelchair accessible routes only </Form.Label>
           <Form.Control type='checkbox' name='wheelchairAccess' className='accessToggle' id='wheelchairAccess' onChange={ this._handleWheelchairInput }/>
 
-          <Button type='submit' htmlFor='submit' variant='danger'> Plan Trip </Button>
+          <Button type='submit' htmlFor='submit' variant='danger' size='lg'> Plan Trip </Button>
         </Form>
 
         <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted} time={this.state.time} date={this.state.date}/>

@@ -6,14 +6,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import App from './components/App';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
+import ConfirmTrip from './components/ConfirmTrip'
 import * as serviceWorker from './serviceWorker';
 
 const Routes = (
   <Router>
     <div>
       <Route exact path='/' component={ App }/>
-      <Route exact path='/Signup' component={ SignUp }/>
-      <Route exact path='/Signin' component={ SignIn }/>
+      <Route exact path='/signup' component={ SignUp }/>
+      <Route exact path='/signin' component={ SignIn }/>
+      <Route path='/confirmation' component={ ConfirmTrip }/>
     </div>
   </Router>
 )
