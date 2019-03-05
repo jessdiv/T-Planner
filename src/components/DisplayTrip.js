@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DisplayTripInfo from './DisplayTripInfo';
 
 class DisplayTrip extends Component {
   constructor() {
@@ -8,14 +9,8 @@ class DisplayTrip extends Component {
     }
   }
 
-  _getTrainInfo = (e) => {
-    e.preventDefault();
-    console.log('hello');
-  }
-
   render(){
     const trips = this.props.trips["journeys"];
-    // const timePattern = /(\d{4}-\d{2}-\d{2})[A-Z]([0-9]{2}:[0-9]{2}:[0-9]{2})/
 
     const getTime = function(timestamp) {
       const time = new Date(timestamp)
@@ -41,16 +36,20 @@ class DisplayTrip extends Component {
     }
 
     return(
-      <div className='allTrips'>
+      <div className='allTrips container'>
         <ul className='tripList'>
           {trips.map(function(name, index) {
             return <div className='trip'>
-            <li key={ index}>
+            <li key={ index} className='tripList'>
               <p>
-               {(name["legs"][0]["origin"]["departureTimePlanned"])}</p>
+               {(getTime(name["legs"][0]["origin"]["departureTimePlanned"]))}</p>
               <p>{name["legs"][0]["transportation"]["number"]} </p>
 
+
               <button className='moreInfo'> Click for train info </button>
+            
+              <DisplayTripInfo />
+
             </li>
             </div>;
           })}
