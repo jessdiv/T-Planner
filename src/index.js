@@ -4,7 +4,9 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './components/App';
-import SignUp from './components/SignUp';
+import CheckMyStation from './components/CheckMyStation'
+import MyAccount from './components/MyAccount'
+// import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import ConfirmTrip from './components/ConfirmTrip'
 import * as serviceWorker from './serviceWorker';
@@ -13,7 +15,9 @@ const Routes = (
   <Router>
     <div>
       <Route exact path='/' component={ App }/>
-      <Route exact path='/signup' component={ SignUp }/>
+      <Route exact path='/checkmystation' component={ CheckMyStation }/>
+      <Route exact path='/myaccount' component={ MyAccount }/>
+      {/* <Route exact path='/signup' component={ SignUp }/>*/}
       <Route exact path='/signin' component={ SignIn }/>
       <Route path='/confirmation' component={ ConfirmTrip }/>
     </div>

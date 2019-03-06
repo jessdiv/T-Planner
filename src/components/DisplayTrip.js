@@ -20,32 +20,10 @@ class DisplayTrip extends Component {
     console.log('displayStops:' + this.state.displayStops);
   }
 
-  getTime = (timestamp) => {
-      const time = new Date(timestamp)
-      let hour = time.getUTCHours();
-      let minutes = time.getUTCMinutes();
-      console.log(time);
-      console.log(hour);
-      console.log(minutes);
-
-      if (hour < 10 ){
-        hour = ('0' + hour);
-        console.log('hour:' + hour);
-        return (hour);
-      }
-
-      if (minutes < 10) {
-        minutes = ('0' + minutes);
-        console.log('minutes:' + minutes);
-        return minutes;
-      }
-
-      return hour + ':' + minutes;
-    }
-
   render(){
     let trips = this.props.trips["journeys"];
-    console.log(trips[0]);
+
+    console.log('number of legs', trips[0]["legs"].length);
 
     // console.log('----- this: ', this.getTime)
 
@@ -54,9 +32,9 @@ class DisplayTrip extends Component {
         <ul className='tripList'>
           {trips.map((name, index) => {
             return <div className='trip'>
-            <li key={ index} className='tripList'>
+            <li key={index * 25} className='tripList'>
               <p>
-               {this.getTime(name["legs"][0]["origin"]["departureTimePlanned"])}</p>
+               {(name["legs"][0]["origin"]["departureTimePlanned"])}</p>
               <p>{name["legs"][0]["transportation"]["number"]} </p>
 
               <button className='moreInfo' onClick={this.handleClick}> Click for train info </button>

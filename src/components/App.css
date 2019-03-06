@@ -18,10 +18,7 @@ body {
 .heading {
   padding: 10px;
   font-family: 'Cutive Mono', monospace;
-  margin-top: 75px;
-}
-
-.searchHeading {
+  /* margin-top: 150px; */
 }
 
 .navlinks a {
@@ -82,4 +79,8 @@ body {
 
 .trip:hover {
   background-color: pink;
+}
+
+.hide {
+  display: none;
 }
