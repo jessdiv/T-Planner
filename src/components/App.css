@@ -40,6 +40,8 @@ body {
   height: 10vh;
   font-size: 22px;
   color: darkslategray;
+  display: block;
+  justify-content: center;
 }
 
 #wheelchairAccess {

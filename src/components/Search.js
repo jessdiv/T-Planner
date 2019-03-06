@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchResults from './SearchResults';
 import axios from 'axios';
+import Select from 'react-select';
 
 // bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -20,21 +21,40 @@ class Search extends Component {
       time: null,
       date: null,
       submitted: false,
-      originStopId: null,
-      destinationStopId: null,
+      allStations: null,
+      selectedOrigin: null,
+      selectedDestination: null,
+      stationNames: [],
+      // stationData: [],
     }
   }
 
   _handleOriginChange = (e) => {
-    this.setState({
-      origin: e.target.value,
-    });
+    console.log(e.target.value);
+    this.setState({ selectedOrigin: e.target.value });
+
+    // console.log('station list:', this.state.stationNames);
+    // console.log('///////////');
+    // console.log(this.state.stationNames);
+    // console.log(this.state.selectedOrigin);
+    //
+    // console.log('////////////');
+    // const index = (this.state.stationNames).indexOf(this.state.selectedOrigin)
+    // console.log('index is:', index);
+
+    console.log(this.state.allStations[e.target.value]);
+
+    this.setState({ origin: this.state.allStations[e.target.value]})
+
   }
 
   _handleDestinationChange = (e) => {
-    this.setState({
-      destination: e.target.value,
-    });
+    console.log(e.target.value);
+    this.setState({ selectedDestination: e.target.value });
+
+    console.log(this.state.allStations[e.target.value]);
+
+    this.setState({ destination: this.state.allStations[e.target.value]})
   }
 
   _handleWheelchairInput = (e) => {
@@ -55,32 +75,50 @@ class Search extends Component {
     })
   }
 
+  componentDidMount = () => {
+    let allStations;
+    let stationNames;
+
+    axios.get(`http://localhost:4000/find_stop`)
+    .then((response) => {
+      allStations = response.data
+      console.log('Response data: ', allStations);
+
+      stationNames = Object.keys(allStations)
+      console.log(stationNames);
+
+      // const stationData = stationNames.map(opt => ({ "station": opt, "id": opt }));
+      // console.log('station data', stationData);
+      this.setState({ allStations })
+      this.setState({ stationNames })
+    });
+
+  }
+
+
   _handleSubmit = (e, origin=this.state.origin, destination=this.state.destination) => {
     e.preventDefault();
 
-    // axios.get(`http://localhost:4000/find_stop?stop=${this.state.origin}`)
+    console.log('origin',this.state.origin);
+    console.log('destination',this.state.destination);
+
+    // axios.get(`http://localhost:4000/find_stop`)
     // .then((response) => {
-    // let originStopId;
-    //
-    //   // console.log(response["request"]['response']);
-    //   // console.log(`RESPONSE HERE: `, response["request"]['response']["itdRequest"]["itdStopFinderRequest"]["itdOdv"]["itdOdvPlace"]["itdOdvName"]["odvNameElem"]['id']);
-    //
-    //   this.setState({ originStopId })
-    //
-    //   axios.get(`http://localhost:4000/find_stop?stop=${this.state.destination}`)
-    //   .then((response) => {
-    //   let destinationStopId;
-    //
-    //   this.setState({ destinationStopId })
+    //   console.log(response.data);
+    //   //
+    //   // this.setState({ originStopId })
+    //   //
+    //   // axios.get(`http://localhost:4000/find_stop?stop=${this.state.destination}`)
+    //   // .then((response) => {
+    //   // let destinationStopId;
+    //   //
+    //   // this.setState({ destinationStopId })
     //
     // });
 
     this.setState({
       submitted: true,
     })
-
-
-
   }
 
   resultSubmitted = () => {
@@ -90,16 +128,20 @@ class Search extends Component {
   }
 
   render() {
+    // const { selectedOrigin } = this.state;
+
     return(
       <div className='searchBar container'>
         <h3 className='searchHeading'> A Trip Planner for train travel </h3>
         <Form onSubmit={ this._handleSubmit }>
 
-          <Form.Label htmlFor='origin'> From: </Form.Label>
-          <Form.Control type='text' name='origin'  id='origin' onChange={ this._handleOriginChange } className='searchInput' required autoFocus/>
+        <label htmlFor='origin'> From: </label>
+        <select name='origin' id="origin" className='searchInput' onChange={this._handleOriginChange}> {this.state.stationNames.map((x, y) => <option key={y}>{x}</option>)}</select>
 
-          <Form.Label htmlFor='destination'> To: </Form.Label>
-          <Form.Control type='text' name='destination' id="destination" onChange={ this._handleDestinationChange } className='searchInput' required/>
+        <label htmlFor='destination'> To: </label>
+        <select name='destination' id="destination" className='searchInput' onChange={this._handleDestinationChange}> {this.state.stationNames.map((x, y) => <option key={y} value={x}>{x}</option>)}</select>
+
+          <div> ----------------- </div>
 
           <Form.Label htmlFor='date'> Select a date: </Form.Label>
           <Form.Control type='date' name='date' id="date" onChange={ this._handleDate } className='searchInput'/>
@@ -114,9 +156,13 @@ class Search extends Component {
         </Form>
 
         <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted} time={this.state.time} date={this.state.date}/>
+
       </div>
     );
   }
 }
 
 export default Search
+
+
+  // <Select htmlFor='origin' value={ selectedOrigin } options={this.stationData} onChange={this._handleOriginChange}/>
