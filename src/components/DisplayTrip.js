@@ -12,13 +12,13 @@ class DisplayTrip extends Component {
 
   handleClick = (e) => {
     e.preventDefault()
-    console.log('------ clickity click');
+    // console.log('------ clickity click');
 
     this.setState({
       displayStops: !this.state.displayStops,
 
     })
-    console.log('displayStops:' + this.state.displayStops);
+    // console.log('displayStops:' + this.state.displayStops);
   }
 
   // fetchStopSequence = () => {
@@ -34,7 +34,7 @@ class DisplayTrip extends Component {
   render(){
     let trips = this.props.trips["journeys"];
 
-    console.log('number of legs', trips[0]["legs"].length);
+    // console.log('number of legs', trips[0]["legs"].length);
 
     return(
       <div className='allTrips container'>

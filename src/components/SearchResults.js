@@ -26,7 +26,7 @@ class SearchResults extends Component {
     }
 
     accessibleRoutes = getRoutes(this.props.wheelchairAccess);
-    console.log(accessibleRoutes);
+    // console.log(accessibleRoutes);
 
     if (this.props.submitted === true) {
       this.props.resultSubmitted();
@@ -39,12 +39,12 @@ class SearchResults extends Component {
   }
 
   render() {
-    console.log('///////////////');
-    console.log("origin", this.props.origin)
-    console.log("destination", this.props.destination)
-    console.log("time", this.props.time)
-    console.log("date", this.props.date)
-    console.log('////////////////');
+    // console.log('///////////////');
+    // console.log("origin", this.props.origin)
+    // console.log("destination", this.props.destination)
+    // console.log("time", this.props.time)
+    // console.log("date", this.props.date)
+    // console.log('////////////////');
 
     return(
       this.state.trips === null ? <div></div> :

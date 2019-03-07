@@ -5,6 +5,7 @@ class DisplayTripInfo extends Component {
     super();
     this.state = {
       stopSequence: [],
+      arrivalTime: null,
     }
   }
 
@@ -27,10 +28,13 @@ class DisplayTripInfo extends Component {
 
       this.setState({ stopSequence });
 
-        // return this.setState({ stopSequence: name['name']});
+      this.setState({})
 
     } else {
-      console.log('this has more than one leg!');
+      let stopSequence = [];
+      console.log('THIS HAS MORE THAN ONE LEG');
+
+
     }
 
   }
@@ -43,11 +47,11 @@ class DisplayTripInfo extends Component {
     // console.log('this trip: ',thisTrip);
 
     return (
-      this.props.display === false ? <div>not displaying</div> :
+      this.props.display === false ? <div></div> :
       <div>
-        <ul>
-        {}
-        </ul>
+        {this.state.stopSequence.map((item, index) => {
+          return <p> {item} </p>
+        })}
       </div>
     );
   }

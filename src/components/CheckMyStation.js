@@ -17,7 +17,7 @@ class CheckMyStation extends Component {
       stationAccess: null,
       currentStation: null,
       currentStationName: null,
-      // stationAccessibility: true,
+      stationAccessibility: null,
       message: "",
     }
   }
@@ -42,20 +42,6 @@ class CheckMyStation extends Component {
     })
   }
 
-  getMessage = (e) => {
-    if (this.state.stationAccessibility === true) {
-      this.setState({
-        message: ' is wheelchair accessible'
-      })
-      return;
-    } else {
-      this.setState({
-        message: ' is not wheelchair accessible'
-      })
-      return;
-    }
-  }
-
 
   _handleStationSelection = (e) => {
     e.preventDefault();
@@ -69,6 +55,7 @@ class CheckMyStation extends Component {
     this.setState({ currentStation: this.state.allStations[e.target.value] })
 
     console.log('/////////');
+    console.log(e.target.value);
     console.log(this.state.stationAccess);
     console.log(this.state.stationAccess[e.target.value]);
     console.log('////////////');
@@ -77,10 +64,23 @@ class CheckMyStation extends Component {
       stationAccessibility: this.state.stationAccess[e.target.value]
     })
 
-    console.log('station accessibility:', this.state.stationAccessibility);
-
     this.getMessage(e)
 
+  }
+
+  getMessage = (e) => {
+    e.preventDefault()
+    if (this.state.stationAccess[e.target.value] === true) {
+      this.setState({
+        message: ' is wheelchair accessible'
+      })
+      return;
+    } else {
+      this.setState({
+        message: ' is not wheelchair accessible'
+      })
+      return;
+    }
   }
 
   render() {
