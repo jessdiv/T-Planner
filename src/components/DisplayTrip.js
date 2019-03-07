@@ -27,10 +27,10 @@ class DisplayTrip extends Component {
 
     return(
       <div className='allTrips container'>
-        <ul className='tripList'>
+        <div className='tripList'>
         {trips.map((name, index) => {
           return <div className='trip'>
-          <li key={index * 25} className='tripList'>
+          <p key={index * 25} className='tripList'>
             <p> Departing:
               {(name["legs"][0]["origin"]["departureTimePlanned"]).split("T")[1].substr(0, 5)}</p>
 
@@ -38,12 +38,12 @@ class DisplayTrip extends Component {
 
             <button className='moreInfo' onClick={this.handleClick}> Click for train info </button>
 
-          {<DisplayTripInfo display={this.state.displayStops} thisTrip={trips[index]}/>}
+          {<DisplayTripInfo display={this.state.displayStops} thisTrip={trips[index]} tripInfo={this.state.tripInfo}/>}
 
-          </li>
+          </p>
           </div>;
         })}
-        </ul>
+        </div>
       </div>
     )
   }

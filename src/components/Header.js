@@ -15,19 +15,19 @@ class Header extends Component {
 
         <Navbar bg="light" variant='light' fixed="top" className='navlinks' role="navigation">
           <div id="menuToggle">
-            <input type="checkbox"/>
+            <input type="checkbox" aria-label="check box"/>
               <span></span>
               <span></span>
               <span></span>
             <ul id="menu">
-              <Link to='/'> Home </Link>
-              <Link to='/about'> About </Link>
-              <Link to='/checkmystation'> Check a station </Link>
+              <li><Link to='/'> Home </Link></li>
+              <li><Link to='/about'> About </Link></li>
+              <li><Link to='/checkmystation'> Check a station </Link></li>
             </ul>
           </div>
           </Navbar>
 
-        <h1 className="heading"> AxSyd </h1>
+        <img src='./syd-ax-logo.png' alt='Syd Ax Logo' className='logo'/>
       </div>
 
     );

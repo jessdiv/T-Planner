@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Cutive+Mono|Playfair+Display');
 
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono|Lato|Lilita+One|Staatliches');
+
 body {
-  background-color: darkslategray;
+  background-color: white;
   color: black;
   font-family: 'Playfair Display', serif;
   font-weight: 50;
   font-size: 25px;
-  color: white;
+  color: darkslategray;
 }
 
 @media (min-width: 400px){
@@ -14,7 +16,7 @@ body {
     margin-top: 100px;
   }
 
-  a {
+  li > a {
   text-decoration: none;
   color: #232323;
 
@@ -22,8 +24,102 @@ body {
   display: flex;
   }
 
-  a:hover {
-  color: tomato;
+  li > a:hover {
+  color: firebrick;
+  text-decoration: underline;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  h1.heading {
+    text-align: center;
+    margin: 20px;
+  }
+
+  label {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-weight: 20;
+    font-size: 0.8em;
+  }
+
+  .formInput {
+    margin: 20px;
+  }
+
+  .fixed {
+    left: 50%;
+    bottom: 0;
+  }
+
+  .greenMessage {
+    background-color: white;
+    color: darkslategray;
+    padding: 8px;
+  }
+
+  .redMessage {
+    background-color: firebrick;
+    color:white;
+    padding: 8px;
+  }
+
+  .checkStation {
+    padding: 20px;
+  }
+
+  .form {
+    font-family: 'Cutive', monospace;
+  }
+
+  .form > label {
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    display: inline-block;
+  }
+
+  .planTripButton{
+    margin: 25px;
+    background-color: firebrick;
+  }
+
+  .allTrips {
+    font-family: 'Lato', sans-serif;
+  }
+
+  .trip {
+  border: solid darkslategray 2px;
+  border-radius: 0.5em;
+  margin: 8px;
+  }
+
+  .tripHeading {
+    background-color: lightyellow;
+    color: black;
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .stops {
+    font-size: 15px;
+    line-height: 1em;
+    margin-top: 15px;
+  }
+
+  .logo {
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footerLink {
+    color: darkslategray;
+  }
+
+  .footerLink:hover {
+    color: firebrick;
   }
 
   #menuToggle {
@@ -38,199 +134,127 @@ body {
   user-select: none;
  }
 
-#menuToggle input
-{
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  top: -7px;
-  left: -5px;
+  #menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
+    opacity: 0; /* hide this */
+    z-index: 2; /* and place it over the hamburger */
 
-  -webkit-touch-callout: none;
+    -webkit-touch-callout: none;
+  }
+
+  /*
+   * Just a quick hamburger
+   */
+    #menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: #cdcdcd;
+    border-radius: 3px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0px;
+
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+  }
+
+  #menuToggle span:first-child {
+    transform-origin: 0% 0%;
+  }
+
+  #menuToggle span:nth-last-child(2){
+    transform-origin: 0% 100%;
+  }
+
+  /*
+   * Transform all the slices of hamburger
+   * into a crossmark.
+   */
+  #menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+  }
+
+  /*
+   * But let's hide the middle one.
+   */
+  #menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+
+  /*
+   * Ohyeah and the last one should go the other direction
+   */
+  #menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+  }
+
+  /*
+   * Make this absolute positioned
+   * at the top left of the screen
+   */
+  #menu {
+    position: absolute;
+    width: 300px;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+
+    background: #ededed;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  }
+
+  #menu li {
+    padding: 10px 0;
+    font-size: 22px;
+  }
+
+  /*
+   * And let's slide it in from the left
+   */
+  #menuToggle input:checked ~ ul {
+    transform: none;
+  }
 }
 
-/*
- * Just a quick hamburger
- */
-#menuToggle span
-{
-  display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
-
-  background: #cdcdcd;
-  border-radius: 3px;
-
-  z-index: 1;
-
-  transform-origin: 4px 0px;
-
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
-}
-
-#menuToggle span:first-child
-{
-  transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2)
-{
-  transform-origin: 0% 100%;
-}
-
-/*
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-#menuToggle input:checked ~ span
-{
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: #232323;
-}
-
-/*
- * But let's hide the middle one.
- */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-/*
- * Ohyeah and the last one should go the other direction
- */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
-  transform: rotate(-45deg) translate(0, -1px);
-}
-
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
-#menu
-{
-  position: absolute;
-  width: 300px;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 125px;
-
-  background: #ededed;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
-
-  transform-origin: 0% 0%;
-  transform: translate(-100%, 0);
-
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-}
-
-#menu li
-{
-  padding: 10px 0;
-  font-size: 22px;
-}
-
-/*
- * And let's slide it in from the left
- */
-#menuToggle input:checked ~ ul
-{
-  transform: none;
-}
-}
-
-/* .App {
+.App {
   text-align: center;
   max-width: 960px;
   margin: 0 auto;
-} */
+}
 
-/* .heading {
-  padding: 10px;
-  font-family: 'Cutive Mono', monospace;
-
-} */
-
-/* .navlinks a {
+.navlinks a {
   text-decoration: none;
   color: black;
   padding: 5px;
   font-size: 20px;
   font-family: 'Cutive Mono', monospace;
-} */
+}
 
-/* .navlinks a:hover {
-  background-color: white;
-} */
-
-/* .searchInput {
-  font-size: 22px;
-  color: darkslategray;
-  display: block;
-  justify-content: center;
-} */
-
-/* .searchInput:focus {
-  background-color: lightyellow;
-} */
-
-
-/* #wheelchairAccess {
-  display: inline-block;
-} */
-
-/* .tripHeading {
-  margin: 25px;
-} */
-
-/* .route {
-  margin: 20px;
-} */
-
-/* .routeTime {
-  font-size: 18px;
-} */
-
-/* .tripList {
-  text-align: center;
-  font-size: 18px;
-  list-style: none;
-} */
-
-/* .trip {
-  font-size: 1em;
-  border: solid white 2px;
-  padding: 5px;
-  margin: 20px;
-  list-style: none;
-  display: inline-block;
-  width: 75vw;
-  align-items: center;
-} */
-
-/* .tripList {
-  list-style: none;
-} */
 
 /* .trip:hover {
   background-color: rgba(255, 192, 204, 0.5);
 } */
-
-.hide {
-  display: none;
-}

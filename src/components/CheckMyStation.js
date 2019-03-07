@@ -80,13 +80,16 @@ class CheckMyStation extends Component {
     return (
       <div className='container'>
         <Header />
-        <h2> Check a station </h2>
+
+        <h1> Is your station wheelchair accessible? </h1>
+
+        <p className='checkStation'> Search for a station below to find out if it's fully wheelchair accessible. </p>
         <Form onSubmit>
           <Form.Label htmlFor='destination'> Select Station </Form.Label>
           <Form.Control as='select' name='destination' id="destination" className='searchInput stationInput'  onChange={this._handleStationSelection} required> {this.state.stationNames.map((x, y) => <option key={y} value={x}>{x}</option>)}</Form.Control>
         </Form>
 
-        <StationAccess message={this.state.message} stationName={ this.state.currentStationName}/>
+        <StationAccess message={this.state.message} stationName={ this.state.currentStationName} stationAccess={this.state.stationAccessibility}/>
 
         <Footer />
       </div>

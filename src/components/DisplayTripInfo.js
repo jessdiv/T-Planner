@@ -35,11 +35,7 @@ class DisplayTripInfo extends Component {
       // let stopSequence = [];
       console.log('THIS HAS MORE THAN ONE LEG');
 
-      // for (let i = 0; i < this.props.thisTrip["legs"].length -1; i ++) {
-      //
-      // }
-
-
+      /// TBA ///
     }
 
     this.setState({ isLoading: false })
@@ -47,20 +43,16 @@ class DisplayTripInfo extends Component {
   }
 
   render() {
-    // console.log(this.state.stopSequence);
-
-    // const thisTrip = this.props.thisTrip["legs"][0]["stopSequence"];
-
-    // console.log('this trip: ',thisTrip);
 
     return (
       this.state.isLoading ? <div> Finding routes now... </div> :
 
       this.props.display === false ? <div></div> :
-      <div>
+      <div className='stops'>
         {this.state.stopSequence.map((item, index) => {
           return <p> {item} </p>
         })}
+        <p> Arriving: </p>
       </div>
     );
   }

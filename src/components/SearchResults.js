@@ -50,10 +50,11 @@ class SearchResults extends Component {
 
     return(
       this.state.trips === null ? <div></div> :
-      <div className='tripHeading'>
-        <h2 className='route'> {this.props.originName} to {this.props.destinationName}</h2>
-        <p className='routeTime'> Leaving after: {this.props.timeEntered }, {this.props.date }</p>
-
+      <div>
+        <div className='tripHeading'>
+          <h2 className='route'> {this.props.originName} to {this.props.destinationName}</h2>
+          <p className='routeTime'> Leaving after: {this.props.timeEntered }, {this.props.date }</p>
+        </div>
         <DisplayTrip trips={ this.state.trips } origin={this.props.origin} destination={this.props.destination} originName={this.props.originName} destinationName={this.props.destinationName} />
       </div>
     );
