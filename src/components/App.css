@@ -34,7 +34,7 @@ body {
 }
 
 .searchInput {
-  height: 10vh;
+  /* height: 10vh; */
   font-size: 22px;
   color: darkslategray;
   display: block;
@@ -60,6 +60,7 @@ body {
 .tripList {
   text-align: center;
   font-size: 18px;
+  list-style: none;
 }
 
 .trip {

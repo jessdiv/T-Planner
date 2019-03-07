@@ -28,7 +28,6 @@ class Search extends Component {
       selectedDate: null,
       stationNames: [],
       stationAccess: null,
-      // stationData: [],
     }
   }
 
@@ -77,7 +76,7 @@ class Search extends Component {
     let allStations;
     let stationNames;
 
-    axios.get(`http://localhost:4000/find_stop`)
+    axios.get(`https://trip-planner-server.herokuapp.com//find_stop`)
     .then((response) => {
       allStations = response.data
 
@@ -87,7 +86,7 @@ class Search extends Component {
       this.setState({ stationNames })
     });
 
-      axios.get('http://localhost:4000/wheelchairs.json').then(res => {
+      axios.get('https://trip-planner-server.herokuapp.com/wheelchairs.json').then(res => {
         this.setState({stationAccess: res.data});
       })
   }
@@ -104,11 +103,6 @@ class Search extends Component {
         submitted: true,
       })
     }
-
-    if (this.stationAccess[this.state.originName]=== false || this.station.Access[this.state.destinationName === false]) {
-      console.log('this route is not wheelchair accessible')
-    }
-
   }
 
   resultSubmitted = () => {
@@ -116,12 +110,6 @@ class Search extends Component {
       submitted: false,
     })
   }
-
-  // isAccessible = () => {
-  //   if( )
-  // }
-
-
 
   render() {
     // const { selectedOrigin } = this.state;
@@ -142,7 +130,7 @@ class Search extends Component {
           <Form.Control as='select' name='destination' id="destination" className='searchInput stationInput'  onChange={this._handleDestinationChange} required> {this.state.stationNames.map((x, y) => <option key={y} value={x}>{x}</option>)}</Form.Control>
 
           <Form.Label htmlFor='date'> Select a date: </Form.Label>
-          <Form.Control type='date' name='date' id="date" onChange={ this._handleDate } className="searchInput" required/>
+          <Form.Control type='date' min='2019-03-07' max='2019-10-01' name='date' id="date" onChange={ this._handleDate } className="searchInput" required/>
 
           <Form.Label htmlFor='time'> Pick a time: </Form.Label>
           <Form.Control as='select' name='time' id="time" onChange={ this._handleTime } className='searchInput' required>

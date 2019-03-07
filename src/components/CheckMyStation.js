@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import StationAccess from './StationAccessResult';
 
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 class CheckMyStation extends Component {
@@ -17,7 +17,7 @@ class CheckMyStation extends Component {
       stationAccess: null,
       currentStation: null,
       currentStationName: null,
-      stationAccessibility: null,
+      // stationAccessibility: true,
       message: "",
     }
   }
@@ -26,9 +26,9 @@ class CheckMyStation extends Component {
     let allStations;
     let stationNames;
 
-    axios.get(`http://localhost:4000/find_stop`)
-    .then((response) => {
-      allStations = response.data
+    axios.get(`https://trip-planner-server.herokuapp.com/find_stop`)
+    .then((res) => {
+      allStations = res.data
 
       stationNames = Object.keys(allStations)
 
@@ -36,32 +36,13 @@ class CheckMyStation extends Component {
       this.setState({ stationNames })
     });
 
-    axios.get('http://localhost:4000/wheelchairs.json').then(res => {
-      this.setState({stationAccess: res.data});
+    axios.get('https://trip-planner-server.herokuapp.com/wheelchairs')
+    .then(res => {
+      this.setState({ stationAccess: res.data});
     })
-
   }
 
-  _handleStationSelection = (e) => {
-    e.preventDefault();
-
-    this.setState({ currentStationName: e.target.value})
-
-    console.log(this.state.allStations[e.target.value]);
-
-    this.setState({ currentStation: this.state.allStations[e.target.value] })
-
-    console.log('station', this.state.currentStation);
-      console.log('station', this.state.currentStationName);
-    console.log('stationAccess:', this.state.stationAccess);
-
-
-    this.setState({
-      stationAccessibility: this.state.stationAccess[this.state.currentStationName]
-    })
-
-    console.log('accessibility: ',this.state.statistationAccessibility)
-
+  getMessage = (e) => {
     if (this.state.stationAccessibility === true) {
       this.setState({
         message: ' is wheelchair accessible'
@@ -75,6 +56,33 @@ class CheckMyStation extends Component {
     }
   }
 
+
+  _handleStationSelection = (e) => {
+    e.preventDefault();
+
+    console.log('current station name: ', e.target.value);
+
+    this.setState({ currentStationName: e.target.value})
+
+    console.log('current station id',this.state.allStations[e.target.value]);
+
+    this.setState({ currentStation: this.state.allStations[e.target.value] })
+
+    console.log('/////////');
+    console.log(this.state.stationAccess);
+    console.log(this.state.stationAccess[e.target.value]);
+    console.log('////////////');
+
+    this.setState({
+      stationAccessibility: this.state.stationAccess[e.target.value]
+    })
+
+    console.log('station accessibility:', this.state.stationAccessibility);
+
+    this.getMessage(e)
+
+  }
+
   render() {
 
     return (
@@ -84,8 +92,6 @@ class CheckMyStation extends Component {
         <Form onSubmit>
           <Form.Label htmlFor='destination'> Select Station </Form.Label>
           <Form.Control as='select' name='destination' id="destination" className='searchInput stationInput'  onChange={this._handleStationSelection} required> {this.state.stationNames.map((x, y) => <option key={y} value={x}>{x}</option>)}</Form.Control>
-
-          <Button type='submit' htmlFor='submit' variant='danger' size='lg'> Check Station </Button>
         </Form>
 
         <StationAccess message={this.state.message} stationName={ this.state.currentStationName}/>

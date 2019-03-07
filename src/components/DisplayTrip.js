@@ -10,7 +10,8 @@ class DisplayTrip extends Component {
     }
   }
 
-  handleClick = () => {
+  handleClick = (e) => {
+    e.preventDefault()
     console.log('------ clickity click');
 
     this.setState({
@@ -20,30 +21,38 @@ class DisplayTrip extends Component {
     console.log('displayStops:' + this.state.displayStops);
   }
 
+  // fetchStopSequence = () => {
+  //   let trips = this.props.trips["journeys"];
+  //
+  //   for ( let i = 0; i < trips.length -1; i ++ ){
+  //     for( let j=0; j < trips[i]["legs"].length - 1; j ++) {
+  //       console.log('HELLO does this work??:', trips[i]);
+  //     }
+  //   }
+  // }
+
   render(){
     let trips = this.props.trips["journeys"];
 
     console.log('number of legs', trips[0]["legs"].length);
 
-    // console.log('----- this: ', this.getTime)
-
     return(
       <div className='allTrips container'>
         <ul className='tripList'>
-          {trips.map((name, index) => {
-            return <div className='trip'>
-            <li key={index * 25} className='tripList'>
-              <p>
-               {(name["legs"][0]["origin"]["departureTimePlanned"])}</p>
-              <p>{name["legs"][0]["transportation"]["number"]} </p>
+        {trips.map((name, index) => {
+          return <div className='trip'>
+          <li key={index * 25} className='tripList'>
+            <p>
+             {(name["legs"][0]["origin"]["departureTimePlanned"])}</p>
+            <p>{name["legs"][0]["transportation"]["number"]} </p>
 
-              <button className='moreInfo' onClick={this.handleClick}> Click for train info </button>
+            <button className='moreInfo' onClick={this.handleClick}> Click for train info </button>
 
-              { this.state.displayStops && <DisplayTripInfo thisTrip={trips[index]}/>}
+          {<DisplayTripInfo display={this.state.displayStops} thisTrip={trips[index]}/>}
 
-            </li>
-            </div>;
-          })}
+          </li>
+          </div>;
+        })}
         </ul>
       </div>
     )
@@ -51,3 +60,9 @@ class DisplayTrip extends Component {
 }
 
 export default DisplayTrip;
+
+
+
+//
+//     { this.state.displayStops && <DisplayTripInfo thisTrip={trips[index]}/>}
+//
