@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './components/App';
 import CheckMyStation from './components/CheckMyStation'
+import About from './components/About'
 // import MyAccount from './components/MyAccount'
 // import SignUp from './components/SignUp';
 // import SignIn from './components/SignIn';
@@ -16,6 +17,7 @@ const Routes = (
     <div>
       <Route exact path='/' component={ App }/>
       <Route exact path='/checkmystation' component={ CheckMyStation }/>
+      <Route exact path='/about' component={ About }/>
       {/*  <Route exact path='/myaccount' component={ MyAccount }/>*/}
       {/* <Route exact path='/signup' component={ SignUp }/>*/}
       {/* <Route exact path='/signin' component={ SignIn }/>

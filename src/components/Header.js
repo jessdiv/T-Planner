@@ -6,16 +6,6 @@ import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 // import Nav from 'react-bootstrap/Nav';
 
-// const Welcome = ({user, onSignOut})=> {
-//   // This is a dumb "stateless" component
-//   return (
-//     <div>
-//       Welcome <strong>{user.username}</strong>!
-//       <Link to="/" onClick={onSignOut}>Sign out</Link>
-//     </div>
-//   )
-// }
-
 class Header extends Component {
 
   render () {
@@ -23,20 +13,19 @@ class Header extends Component {
 
       <div className="header">
 
-        <Navbar bg="light" variant='light' fixed="top" className='navlinks'>
-          <Navbar.Brand href="/"><strong>AXSYD</strong>  |</Navbar.Brand>
-              <Link to='/'> Home  |</Link>
-              <Link to='/checkmystation'> Check a station  |</Link>
-            {/* <Link to='/logtrip'> Log a trip  |</Link>*/}
-
-          {/*{ this.props.userPresent !== null ?
-              <span>
-                <Welcome />
-                <Link to='/myaccount'> My Account </Link>
-              </span> :
-                <Link to='/signin'> Sign in  |</Link>}
-            }*/}
-        </Navbar>
+        <Navbar bg="light" variant='light' fixed="top" className='navlinks' role="navigation">
+          <div id="menuToggle">
+            <input type="checkbox"/>
+              <span></span>
+              <span></span>
+              <span></span>
+            <ul id="menu">
+              <Link to='/'> Home </Link>
+              <Link to='/about'> About </Link>
+              <Link to='/checkmystation'> Check a station </Link>
+            </ul>
+          </div>
+          </Navbar>
 
         <h1 className="heading"> AxSyd </h1>
       </div>
@@ -46,3 +35,13 @@ class Header extends Component {
 }
 
 export default Header
+
+/* <Link to='/logtrip'> Log a trip  |</Link>*/
+
+/*{ this.props.userPresent !== null ?
+  <span>
+    <Welcome />
+    <Link to='/myaccount'> My Account </Link>
+  </span> :
+    <Link to='/signin'> Sign in  |</Link>}
+}*/

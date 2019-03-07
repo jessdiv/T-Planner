@@ -6,6 +6,7 @@ class DisplayTripInfo extends Component {
     this.state = {
       stopSequence: [],
       arrivalTime: null,
+      isLoading: true,
     }
   }
 
@@ -41,6 +42,8 @@ class DisplayTripInfo extends Component {
 
     }
 
+    this.setState({ isLoading: false })
+
   }
 
   render() {
@@ -51,6 +54,8 @@ class DisplayTripInfo extends Component {
     // console.log('this trip: ',thisTrip);
 
     return (
+      this.state.isLoading ? <div> Finding routes now... </div> :
+
       this.props.display === false ? <div></div> :
       <div>
         {this.state.stopSequence.map((item, index) => {

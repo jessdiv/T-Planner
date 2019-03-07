@@ -36,6 +36,8 @@ class SearchResults extends Component {
         this.setState({ trips })
       })
     }
+
+    axios.get(``)
   }
 
   render() {
@@ -50,7 +52,7 @@ class SearchResults extends Component {
       this.state.trips === null ? <div></div> :
       <div className='tripHeading'>
         <h2 className='route'> {this.props.originName} to {this.props.destinationName}</h2>
-        <p className='routeTime'> Leaving after: {this.props.time }, {this.props.date }</p>
+        <p className='routeTime'> Leaving after: {this.props.timeEntered }, {this.props.date }</p>
 
         <DisplayTrip trips={ this.state.trips } origin={this.props.origin} destination={this.props.destination} originName={this.props.originName} destinationName={this.props.destinationName} />
       </div>

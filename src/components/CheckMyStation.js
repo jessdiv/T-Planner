@@ -45,27 +45,19 @@ class CheckMyStation extends Component {
 
   _handleStationSelection = (e) => {
     e.preventDefault();
-
-    console.log('current station name: ', e.target.value);
-
+    // console.log('current station name: ', e.target.value);
     this.setState({ currentStationName: e.target.value})
-
-    console.log('current station id',this.state.allStations[e.target.value]);
-
+    // console.log('current station id',this.state.allStations[e.target.value]);
     this.setState({ currentStation: this.state.allStations[e.target.value] })
-
-    console.log('/////////');
-    console.log(e.target.value);
-    console.log(this.state.stationAccess);
-    console.log(this.state.stationAccess[e.target.value]);
-    console.log('////////////');
-
+    // console.log('/////////');
+    // console.log(e.target.value);
+    // console.log(this.state.stationAccess);
+    // console.log(this.state.stationAccess[e.target.value]);
+    // console.log('////////////');
     this.setState({
       stationAccessibility: this.state.stationAccess[e.target.value]
     })
-
     this.getMessage(e)
-
   }
 
   getMessage = (e) => {
@@ -86,7 +78,7 @@ class CheckMyStation extends Component {
   render() {
 
     return (
-      <div>
+      <div className='container'>
         <Header />
         <h2> Check a station </h2>
         <Form onSubmit>

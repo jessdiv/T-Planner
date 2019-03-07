@@ -21,20 +21,9 @@ class DisplayTrip extends Component {
     // console.log('displayStops:' + this.state.displayStops);
   }
 
-  // fetchStopSequence = () => {
-  //   let trips = this.props.trips["journeys"];
-  //
-  //   for ( let i = 0; i < trips.length -1; i ++ ){
-  //     for( let j=0; j < trips[i]["legs"].length - 1; j ++) {
-  //       console.log('HELLO does this work??:', trips[i]);
-  //     }
-  //   }
-  // }
 
   render(){
     let trips = this.props.trips["journeys"];
-
-    // console.log('number of legs', trips[0]["legs"].length);
 
     return(
       <div className='allTrips container'>
@@ -42,8 +31,9 @@ class DisplayTrip extends Component {
         {trips.map((name, index) => {
           return <div className='trip'>
           <li key={index * 25} className='tripList'>
-            <p>
-             {(name["legs"][0]["origin"]["departureTimePlanned"])}</p>
+            <p> Departing:
+              {(name["legs"][0]["origin"]["departureTimePlanned"]).split("T")[1].substr(0, 5)}</p>
+
             <p>{name["legs"][0]["transportation"]["number"]} </p>
 
             <button className='moreInfo' onClick={this.handleClick}> Click for train info </button>

@@ -4,7 +4,6 @@ import Header from './Header';
 import Search from './Search';
 import Footer from './Footer';
 
-
 class App extends Component {
   constructor() {
     super();

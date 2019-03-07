@@ -18,6 +18,7 @@ class Search extends Component {
       origin: null,
       destination: null,
       wheelchairAccess: false,
+      timeEntered: null,
       time: null,
       date: null,
       submitted: false,
@@ -64,11 +65,36 @@ class Search extends Component {
   }
 
   _handleTime = (e) => {
-    // console.log(e.target.value);
-    const timeString = (e.target.value).split(":").join("") ;
+
+    this.setState({ timeEntered: e.target.value })
+
+    let timeString = (e.target.value).split(":").join("")
+    console.log(timeString);
+    console.log(typeof timeString);
+
+    let hours = timeString.toString().substr(0,2)
+    console.log(typeof hours);
+    let minutes = timeString.toString().slice(-2);
+    console.log('minutes', minutes);
+
+    let hoursNumber = Number(hours) - 1
+    console.log(hoursNumber);
+
+    if (hoursNumber >= 12) {
+      hoursNumber = hoursNumber - 12;
+    } else {
+      hoursNumber = hoursNumber + 12;
+    }
+
+    console.log(hoursNumber)
+    if (hoursNumber < 10) {
+      hoursNumber = '0' + hoursNumber
+    }
+
+    console.log('newtime: ', `${hoursNumber}:${minutes}`);
 
     this.setState({
-      time: timeString,
+      time: `${hoursNumber}:${minutes}`,
     })
   }
 
@@ -130,7 +156,7 @@ class Search extends Component {
           <Form.Control as='select' name='destination' id="destination" className='searchInput stationInput'  onChange={this._handleDestinationChange} required> {this.state.stationNames.map((x, y) => <option key={y} value={x}>{x}</option>)}</Form.Control>
 
           <Form.Label htmlFor='date'> Select a date: </Form.Label>
-          <Form.Control type='date' min='2019-03-07' max='2019-10-01' name='date' id="date" onChange={ this._handleDate } className="searchInput" required/>
+          <Form.Control type='date' min='2019-03-07' max='2019-04-01' name='date' id="date" onChange={ this._handleDate } className="searchInput" required/>
 
           <Form.Label htmlFor='time'> Pick a time: </Form.Label>
           <Form.Control as='select' name='time' id="time" onChange={ this._handleTime } className='searchInput' required>
@@ -143,7 +169,7 @@ class Search extends Component {
           <Button type='submit' htmlFor='submit' variant='danger' size='lg'> Plan Trip </Button>
         </Form>
 
-        <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted} time={this.state.time} date={this.state.date} originName={this.state.selectedOrigin} destinationName={this.state.selectedDestination} wheelchairAccess={this.state.wheelchairAccess}/>
+        <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted} timeEntered={this.state.timeEntered} time={this.state.time} date={this.state.date} originName={this.state.selectedOrigin} destinationName={this.state.selectedDestination} wheelchairAccess={this.state.wheelchairAccess}/>
 
       </div>
     );
