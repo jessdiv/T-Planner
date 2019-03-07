@@ -30,6 +30,8 @@ class Search extends Component {
       selectedDate: null,
       stationNames: [],
       stationAccess: null,
+      tripAccessibility: null,
+
     }
   }
 
@@ -114,7 +116,7 @@ class Search extends Component {
     });
 
       axios.get('https://trip-planner-server.herokuapp.com/wheelchairs.json').then(res => {
-        this.setState({stationAccess: res.data});
+        this.setState({ stationAccess: res.data});
       })
   }
 
@@ -130,7 +132,16 @@ class Search extends Component {
         submitted: true,
       })
     }
+
+    if (this.state.stationAccess[this.state.originName] === false || this.state.stationAccess[this.state.destinationName] === false ) {
+      this.setState({ tripMessage: 'This trip is not wheelchair accessible' });
+    } else {
+      this.setState({ tripMessage: 'This trip is wheelchair accessible' });
+    }
+
   }
+
+
 
   resultSubmitted = () => {
     this.setState({
@@ -171,7 +182,7 @@ class Search extends Component {
           </div>
         </Form>
 
-        <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted} timeEntered={this.state.timeEntered} time={this.state.time} date={this.state.date} originName={this.state.selectedOrigin} destinationName={this.state.selectedDestination} wheelchairAccess={this.state.wheelchairAccess}/>
+        <SearchResults origin={ this.state.origin } destination={ this.state.destination} submitted={ this.state.submitted } resultSubmitted={this.resultSubmitted} timeEntered={this.state.timeEntered} time={this.state.time} date={this.state.date} originName={this.state.selectedOrigin} destinationName={this.state.selectedDestination} wheelchairAccess={this.state.wheelchairAccess} tripAccessibility={this.state.tripMessage}/>
 
       </div>
     );

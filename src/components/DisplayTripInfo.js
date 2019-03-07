@@ -52,7 +52,6 @@ class DisplayTripInfo extends Component {
         {this.state.stopSequence.map((item, index) => {
           return <p> {item} </p>
         })}
-        <p> Arriving: </p>
       </div>
     );
   }

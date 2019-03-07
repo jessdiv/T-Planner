@@ -53,6 +53,7 @@ class SearchResults extends Component {
       <div>
         <div className='tripHeading'>
           <h2 className='route'> {this.props.originName} to {this.props.destinationName}</h2>
+          <p class='accessibilityMessage'> {this.props.tripAccessibility} </p>
           <p className='routeTime'> Leaving after: {this.props.timeEntered }, {this.props.date }</p>
         </div>
         <DisplayTrip trips={ this.state.trips } origin={this.props.origin} destination={this.props.destination} originName={this.props.originName} destinationName={this.props.destinationName} />
