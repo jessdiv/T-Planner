@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchResults from './SearchResults';
 import axios from 'axios';
-// import Select from 'react-select';
 
 // bootstrap components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-
-// date/time pickers
-// import TimePicker from 'basic-react-timepicker';
 
 class Search extends Component {
   constructor() {
@@ -46,11 +42,7 @@ class Search extends Component {
   }
 
   _handleDestinationChange = (e) => {
-    // console.log(e.target.value);
     this.setState({ selectedDestination: e.target.value });
-
-    // console.log(this.state.allStations[e.target.value]);
-
     this.setState({ destination: this.state.allStations[e.target.value]})
   }
 
@@ -61,14 +53,11 @@ class Search extends Component {
   }
 
   _handleDate = (e) => {
-    // console.log(e.target.value)
     const dateString = (e.target.value).split("-").join("");
-
     this.setState({ date: dateString })
   }
 
   _handleTime = (e) => {
-
     this.setState({ timeEntered: e.target.value })
 
     let timeString = (e.target.value).split(":").join("")
@@ -123,8 +112,6 @@ class Search extends Component {
   _handleSubmit = (e) => {
     e.preventDefault();
 
-    // console.log('handle submit is origin being saved?', this.state.origin);
-
     if (this.state.origin === this.state.destination) {
       alert('Destination and origin cannot be the same');
     } else {
@@ -150,8 +137,7 @@ class Search extends Component {
   }
 
   render() {
-    // const { selectedOrigin } = this.state;
-
+    
     return(
       <div className='container'>
         <h1 className='searchHeading'> A Trip Planner for train travel </h1>
