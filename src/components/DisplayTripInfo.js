@@ -34,6 +34,10 @@ class DisplayTripInfo extends Component {
       let stopSequence = [];
       console.log('THIS HAS MORE THAN ONE LEG');
 
+      for (let i = 0; i < this.props.thisTrip["legs"].length -1; i ++) {
+        
+      }
+
 
     }
 
