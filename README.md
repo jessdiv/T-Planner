@@ -1,68 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project 3 Syd-ax
 
-## Available Scripts
+This project was completed as my final project in the General Assembly Web Development Immersive. The application aims to help wheelchair users navigate the Sydney train network. The ultimate goal of the project will be to allow users to log in and confirm trips in which they will be traveling. This information will be used to let the appropriate station guards know, so they can be prepared to assist wheelchair users onto the train.
 
-In the project directory, you can run:
+See live demo here: https://jessdiv.github.io/project3-syd-ax/
 
-### `npm start`
+## Built With
+- Rails
+- PostgresQL
+- React
+- JavaScript
+- HTML
+- CSS
+- Heroku to deploy backend
+- Github pages to deploy app
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Trip search
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Users fill in this form to display upcoming trips between two train stations.
 
-### `npm test`
+![Screenshot of landing page. Trip planner form](Syd-ax-landing-page.png "Syd-ax landing page")
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once the form is submitted, the results will show up as below. If the trip is wheelchair accessible it will be displayed just below the chosen route.
 
-### `npm run build`
+![Screenshot of form search results](search-results.png "Syd-ax landing page")
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Station search
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+![Screenshot of station search page. Check for accessibility](wheelchair-access-search.png "Syd-ax landing page")
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Pain Points
+- Using the transport NSW API
+  - While giving me loads of great information, it took me a long time to wrap my head around the usage and how to best extract the information I needed.
+- Learning react
+  - Not so much a pain point, but defintiely something that took up a large amount of my time considering it was my first react app!
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## TODO
+- Complete the users/trips back end models to allow users to log their upcoming trips.
+- Export trip data as json ready for integrations with transport NSW systems.
