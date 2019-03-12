@@ -35,5 +35,7 @@ Once the form is submitted, the results will show up as below. If the trip is wh
   - Not so much a pain point, but defintiely something that took up a large amount of my time considering it was my first react app!
 
 ## TODO
+- fix bug in search bar when trip is more than one leg.
+- refresh the displayTrip component when the search is submitted for a second time. 
 - Complete the users/trips back end models to allow users to log their upcoming trips.
 - Export trip data as json ready for integrations with transport NSW systems.
