@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Trip-Planner/precache-manifest.cf5a12812d7d34d289145cad05f3e93f.js"
+  "/project3-syd-ax/precache-manifest.0d432b7d67ed7d91124bd35174cb2005.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Trip-Planner/index.html", {
+workbox.routing.registerNavigationRoute("/project3-syd-ax/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
