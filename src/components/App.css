@@ -259,6 +259,7 @@ body {
 }
 
 
-/* .trip:hover {
-  background-color: rgba(255, 192, 204, 0.5);
-} */
+.loading {
+  background-color: green;
+  font-size: 100px;
+}

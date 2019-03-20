@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchResults from './SearchResults';
 import axios from 'axios';
-// import KendoTimePicker from 'kendo-ui-react-jquery-timepicker';
+import ReactLoading from 'react-loading';
 
 // bootstrap components
 import Button from 'react-bootstrap/Button';
@@ -115,6 +115,10 @@ class Search extends Component {
   _handleSubmit = (e) => {
     e.preventDefault();
 
+    this.setState({
+
+    })
+
     if (this.state.origin === this.state.destination) {
       alert('Destination and origin cannot be the same');
     } else {
@@ -132,7 +136,6 @@ class Search extends Component {
   }
 
 
-
   resultSubmitted = () => {
     this.setState({
       submitted: false,
@@ -141,7 +144,12 @@ class Search extends Component {
 
   render() {
 
+    // if ( this.state.stationNames === [] ) {
+    //   return (<ReactLoading type={'bubbles'} color={'firebrick'} height={667} width={375}/>)
+    // }
+
     return(
+
       <div className='container'>
         <h1 className='searchHeading'> A Trip Planner for train travel </h1>
         <Form onSubmit={ this._handleSubmit } className='form'>
@@ -156,6 +164,7 @@ class Search extends Component {
             <label htmlFor='destination'> To: </label>
             <Form.Control as='select' name='destination' id="destination" className='searchInput stationInput'  onChange={this._handleDestinationChange} required> {this.state.stationNames.map((x, y) => <option key={y} value={x}>{x}</option>)}</Form.Control>
           </div>
+
           <div className='formInput'>
             <label htmlFor='date'> Select a date: </label>
             <Form.Control type='date' min='2019-03-07' max='2019-04-01' name='date' id="date" onChange={ this._handleDate } className="searchInput" required/>

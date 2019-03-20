@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import DisplayTrip from './DisplayTrip';
+import ReactLoading from 'react-loading';
 
 class SearchResults extends Component {
   constructor() {
@@ -41,12 +42,9 @@ class SearchResults extends Component {
   }
 
   render() {
-    // console.log('///////////////');
-    // console.log("origin", this.props.origin)
-    // console.log("destination", this.props.destination)
-    // console.log("time", this.props.time)
-    // console.log("date", this.props.date)
-    // console.log('////////////////');
+    // if ( this.state.trips === null ) {
+    //   return (<ReactLoading type={'bubbles'} color={'firebrick'} height={667} width={375}/>)
+    // }
 
     return(
       this.state.trips === null ? <div></div> :
